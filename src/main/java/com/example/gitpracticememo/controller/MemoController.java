@@ -12,5 +12,4 @@ import java.util.Map;
 public class MemoController {
 
     private final Map<Long, Memo> memoList = new HashMap<>();
-    // ㄱㄷㅁㅇ
 }
