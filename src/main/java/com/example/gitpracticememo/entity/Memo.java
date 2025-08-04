@@ -1,6 +1,6 @@
 package com.example.gitpracticememo.entity;
 
-import com.example.springbasicmemo.dto.MemoRequestDto;
+import com.example.gitpracticememo.dto.MemoRequestDto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
