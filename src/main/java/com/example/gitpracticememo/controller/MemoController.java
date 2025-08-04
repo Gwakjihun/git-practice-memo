@@ -23,7 +23,7 @@ public class MemoController {
     @PostMapping
     public ResponseEntity<Memo> createMemo(@RequestBody MemoRequestDto requestDto) {
         Long memoId = memoList.isEmpty() ? 1 : Collections.max(memoList.keySet()) + 1;
-        Memo memo = new Memo(memoId, requestDto.getTitle(), requestDto.getContents());
+        Memo memo = new Memo(memoId, requestDto);
 
         return new ResponseEntity<>(memo , HttpStatus.OK);
     }
