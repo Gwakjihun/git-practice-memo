@@ -25,7 +25,7 @@ public class MemoController {
     }
 
 
-    //READ
+    //READ All
     @GetMapping
     public List<MemoResponseDto> readAllMemos() {
         List<MemoResponseDto> responseList=new ArrayList<>();
