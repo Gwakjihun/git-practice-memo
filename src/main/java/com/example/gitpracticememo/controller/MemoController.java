@@ -48,46 +48,4 @@ public class MemoController {
         }
         return new ResponseEntity<>(new MemoResponseDto(memo), HttpStatus.OK);
     }
-//
-    // update 단건 전체 수정 (PUT)
-    @PutMapping("/{id}")
-    public ResponseEntity<MemoResponseDto> updateMemo(
-            @PathVariable Long id,
-            @RequestBody MemoRequestDto requestDto
-    ) {
-
-        Memo memo = memoList.get(id);
-
-        if (memo == null) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-
-        if (requestDto.getTitle() == null || requestDto.getContents() == null) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
-
-        memo.update(requestDto);
-
-        return new ResponseEntity<>(new MemoResponseDto(memo), HttpStatus.OK);
-    }
-
-    // update 단건 제목 수정 (PATCH)
-    @PatchMapping("/{id}")
-    public ResponseEntity<MemoResponseDto> updateTitle(
-            @PathVariable Long id,
-            @RequestBody MemoRequestDto requestDto
-    ) {
-        Memo memo = memoList.get(id);
-
-        if (memo == null) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-        if (requestDto.getTitle() == null || requestDto.getContents() != null) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
-
-        memo.updateTitle(requestDto);
-
-        return new ResponseEntity<>(new MemoResponseDto(memo), HttpStatus.OK);
-    }
 }
