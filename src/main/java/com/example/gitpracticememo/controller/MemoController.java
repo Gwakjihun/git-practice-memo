@@ -1,9 +1,9 @@
 package com.example.gitpracticememo.controller;
 
 import com.example.gitpracticememo.dto.MemoRequestDto;
+import com.example.gitpracticememo.dto.MemoResponseDto;
 import com.example.gitpracticememo.entity.Memo;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -21,10 +21,11 @@ public class MemoController {
     private final Map<Long, Memo> memoList = new HashMap<>();
 
     @PostMapping
-    public ResponseEntity<Memo> createMemo(@RequestBody MemoRequestDto requestDto) {
+    public ResponseEntity<MemoResponseDto> createMemo(@RequestBody MemoRequestDto requestDto) {
         Long memoId = memoList.isEmpty() ? 1 : Collections.max(memoList.keySet()) + 1;
         Memo memo = new Memo(memoId, requestDto);
-
-        return new ResponseEntity<>(memo , HttpStatus.OK);
+        memoList.put(memoId, memo);
+        MemoResponseDto memoResponseDto = new MemoResponseDto(memo);
+        return new ResponseEntity<>(memoResponseDto , HttpStatus.OK);
     }
 }
