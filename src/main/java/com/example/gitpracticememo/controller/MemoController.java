@@ -48,4 +48,33 @@ public class MemoController {
         }
         return new ResponseEntity<>(new MemoResponseDto(memo), HttpStatus.OK);
     }
+
+
+    //DELETE 단건삭제
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteMemoById(@PathVariable Long id) {
+
+        if(memoList.containsKey(id)) {
+            memoList.remove(id);
+            return new ResponseEntity<>(HttpStatus.OK);
+        }
+
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+
+    }
+
+    //DELETE 전체삭제
+    @DeleteMapping()
+    public ResponseEntity<Void> resetAllMemo() {
+
+        if(memoList.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
+        memoList.clear();
+
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+
 }
