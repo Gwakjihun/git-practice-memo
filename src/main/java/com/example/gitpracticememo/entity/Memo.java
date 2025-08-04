@@ -12,6 +12,12 @@ public class Memo {
     private String title;
     private String contents;
 
+    public Memo(Long memoId, MemoRequestDto requestDto) {
+        this.id = memoId;
+        this.title = requestDto.getTitle();
+        this.contents = requestDto.getContents();
+    }
+
     public void update(MemoRequestDto requestDto) {
         this.title = requestDto.getTitle();
         this.contents = requestDto.getContents();
